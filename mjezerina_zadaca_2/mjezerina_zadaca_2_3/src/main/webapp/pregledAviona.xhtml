@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pregled aviona</title>
+    </h:head>
+    <h:body>
+        <a href="${pageContext.servletContext.contextPath}/mjezerina_zadaca_2_3/pregledAerodroma.xhtml">Vrati se na aerodrome</a><br/>
+        <h2>Pregled aviona</h2>
+        <h:form>
+            <p:dataTable value="#{pregledAerodroma.listaAviona}" var="a" rows="10" 
+                         paginator="true" rowsPerPageTemplate="10,25,50">
+                <p:column>
+                    <f:facet name="header">ICAO24</f:facet>#{a.icao24}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Pozivni znak</f:facet>#{a.callsign}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">1.Vrijeme</f:facet>#{pregledAviona.konvertirajEpochDatum(a.firstSeen)}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">2.Vrijeme</f:facet>#{pregledAviona.konvertirajEpochDatum(a.lastSeen)}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">PA</f:facet>#{a.estDepartureAirport}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">CA</f:facet>#{a.estArrivalAirport}
+                </p:column>
+            </p:dataTable><br/>
+        </h:form>
+    </h:body>
+</html>
+
